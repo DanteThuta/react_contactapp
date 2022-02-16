@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class AddContact extends Component {
   state = {
-    
+    id: "",
     name: "",
     email: "",
   };
@@ -13,6 +13,11 @@ export class AddContact extends Component {
       alert("All inputs must be filled");
       return;
     }
+
+    // for id
+    // const newid = Math.floor(Math.random() * 100);
+    // this.setState({ ...this.state, id: newid });
+
     this.props.addContactHandler(this.state);
 
     this.setState({ name: "", email: "" });

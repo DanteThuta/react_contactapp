@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+// import { uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+import "./App.css";
 import Header from "./components/Header";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
@@ -10,7 +13,9 @@ function App() {
 
   const addContactHandler = (contact) => {
     console.log(contact);
-    setContacts([...contacts, { id: uuid(), ...contact } ]);
+    const newId = Math.floor(Math.random() * 100);
+
+    setContacts([...contacts, { ...contact, id: v4() }]);
   };
 
   // const deleteContactHandler = (id) => {
@@ -32,7 +37,7 @@ function App() {
   }, [contacts]);
 
   return (
-    <div className="App">
+    <div>
       <Header />
       <AddContact addContactHandler={addContactHandler} />
       <ContactList contacts={contacts} />
