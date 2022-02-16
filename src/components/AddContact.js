@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+// import { browserHistory } from "react-router-dom";
 
 export class AddContact extends Component {
   state = {
@@ -21,11 +23,13 @@ export class AddContact extends Component {
     this.props.addContactHandler(this.state);
 
     this.setState({ name: "", email: "" });
+    // this.props.history.push("/");
   };
   render() {
     return (
       <div className="ui main">
         <h2> Add Contact</h2>
+
         <form className="ui form" onSubmit={this.add}>
           <div className="field">
             <label>Name:</label>

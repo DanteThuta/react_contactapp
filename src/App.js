@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 // import { uuid } from "uuid";
 import { v4 as uuidv4 } from "uuid";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
+// Components
 import Header from "./components/Header";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
+import ContactDetail from "./components/ContactDetail";
+
 import { v4 } from "uuid";
 
 function App() {
@@ -37,9 +42,25 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} toGetId={deleteContactHandler} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <ContactList contacts={contacts} toGetId={deleteContactHandler} />
+            }
+          />
+          <Route
+            path="/add"
+            element={<AddContact addContactHandler={addContactHandler} />}
+          />
+          <Route path="/contact/:id" element={<ContactDetail />} />
+        </Routes>
+        {/* <AddContact addContactHandler={addContactHandler} />
+        <ContactList contacts={contacts} toGetId={deleteContactHandler} /> */}
+      </Router>
     </div>
   );
 }
