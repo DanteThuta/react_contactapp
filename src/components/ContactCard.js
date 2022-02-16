@@ -10,8 +10,11 @@ const ContactCard = (props) => {
           <img className="ui avatar image" src={user} alt="User"></img>
           <div className="header">{name}</div>
           <div>{email}</div>
-        </div> 
-        <i className="trash alternate outline icon" ></i>
+        </div>
+        <i
+          className="trash alternate outline icon"
+          onClick={() => props.clickHandler(id)}
+        ></i>
       </div>
     </>
   );

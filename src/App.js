@@ -13,17 +13,16 @@ function App() {
 
   const addContactHandler = (contact) => {
     console.log(contact);
-    const newId = Math.floor(Math.random() * 100);
 
     setContacts([...contacts, { ...contact, id: v4() }]);
   };
 
-  // const deleteContactHandler = (id) => {
-  //   const newContactList = contacts.filter((contact) => {
-  //     return contact.id !== id;
-  //   });
-  //   setContacts(newContactList);
-  // };
+  const deleteContactHandler = (id) => {
+    const newContactList = contacts.filter((contact) => {
+      return contact.id !== id;
+    });
+    setContacts(newContactList);
+  };
 
   useEffect(() => {
     const retrievedContacts = JSON.parse(
@@ -40,7 +39,7 @@ function App() {
     <div>
       <Header />
       <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} toGetId={deleteContactHandler} />
     </div>
   );
 }
